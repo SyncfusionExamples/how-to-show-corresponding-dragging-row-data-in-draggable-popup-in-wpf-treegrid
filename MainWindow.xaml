@@ -1,0 +1,62 @@
+﻿<Window x:Class="SfTreeGridDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SfTreeGridDemo"
+         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate x:Key="dragdroptemplate">
+            <Border x:Name="border" Width="250"    
+                    Background="#ececec"   
+                    BorderBrush="#c8c8c8"  Height="60"  
+                    BorderThickness="1.2">
+                <Grid  VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="FirstName : " Grid.Row="0" Grid.Column="0" />
+                    <TextBlock Text="{Binding DraggingNodes[0].Item.FirstName}" Grid.Row="0" Grid.Column="1"/>
+                    <TextBlock Text="LastName : " Grid.Row="1" Grid.Column="0"/>
+                    <TextBlock Text="{Binding DraggingNodes[0].Item.LastName}" Grid.Row="1" Grid.Column="1"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <syncfusion:SfTreeGrid Name="treeGrid"
+                               AutoGenerateColumns="False"
+                               AllowEditing="True"                               
+                               ChildPropertyName="ReportsTo"
+                               ParentPropertyName="ID"  
+                               ColumnSizer="Star"
+                               SelfRelationRootValue="-1"
+                               ItemsSource="{Binding Employees}"
+                               RowDragDropTemplate="{StaticResource dragdroptemplate}"
+                               AllowDraggingRows="True"
+                               AllowDrop="True" >
+            <syncfusion:SfTreeGrid.Columns>
+                <syncfusion:TreeGridCheckBoxColumn MappingName="IsSelected" HeaderText="Is Selected" />
+                <syncfusion:TreeGridTextColumn MappingName="FirstName" HeaderText="First Name" />
+                <syncfusion:TreeGridTextColumn  MappingName="LastName" HeaderText="Last Name" />
+                <syncfusion:TreeGridTextColumn MappingName="ID" HeaderText="ID" />
+                <syncfusion:TreeGridTextColumn  MappingName="Title" HeaderText="Title" />
+                <syncfusion:TreeGridCurrencyColumn  MappingName="Salary" HeaderText="Salary" />
+                <syncfusion:TreeGridTextColumn  MappingName="ReportsTo" HeaderText="Reports To" />
+            </syncfusion:SfTreeGrid.Columns>
+        </syncfusion:SfTreeGrid>
+    </Grid>
+</Window>
