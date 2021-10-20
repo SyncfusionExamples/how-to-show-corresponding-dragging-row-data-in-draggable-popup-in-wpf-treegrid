@@ -53,5 +53,7 @@ Take a moment to peruse the [WPF TreeGrid - drag and drop row](https://help.sync
 
 Please refer this [link](https://www.syncfusion.com/wpf-controls/treegrid) to know about the essential features of WPF TreeGrid.
 
+KB article - [How to show corresponding dragging row data in draggable popup in WPF TreeGrid (SfTreeGrid)?](https://www.syncfusion.com/kb/12513/how-to-show-corresponding-dragging-row-data-in-draggable-popup-in-wpf-treegrid-sftreegrid)
+
 ## Requirements to run the demo
 Visual Studio 2015 and above versions
